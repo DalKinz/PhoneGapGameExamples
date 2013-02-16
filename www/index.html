@@ -125,9 +125,16 @@
         var canvas = canvasElement.get(0).getContext("2d");
         canvasElement.appendTo('body');
         
-        setInterval(function() {
-          update();
-          draw();
+        setInterval(function () {
+            try{
+                update();
+                draw();}
+            catch (err) {
+                txt = "There was an error on this page.\n\n";
+                txt += "Error description: " + err.message + "\n\n";
+                txt += "Click OK to continue.\n\n";
+                alert(txt);
+            }
         }, 1000/FPS);
         
         function update() {
