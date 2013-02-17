@@ -1,4 +1,23 @@
-﻿function loadImages(sources, callback) {
+﻿window.onload = function () {
+    var sources = {
+        beach: 'beach.png',
+        snake: 'snake.png',
+        snake_glow: 'snake-glow.png',
+        snake_black: 'snake-black.png',
+        lion: 'lion.png',
+        lion_glow: 'lion-glow.png',
+        lion_black: 'lion-black.png',
+        monkey: 'monkey.png',
+        monkey_glow: 'monkey-glow.png',
+        monkey_black: 'monkey-black.png',
+        giraffe: 'giraffe.png',
+        giraffe_glow: 'giraffe-glow.png',
+        giraffe_black: 'giraffe-black.png',
+    };
+    loadImages(sources, initStage);
+};
+
+function loadImages(sources, callback) {
     var assetDir = 'http://www.html5canvastutorials.com/demos/assets/';
     var images = {};
     var loadedImages = 0;
@@ -38,12 +57,12 @@ function drawBackground(background, beachImg, text) {
     context.fillText(text, background.getStage().getWidth() / 2, 40);
 }
 function initStage(images) {
-    var stage = new Kinetic.Stage({
+    stage = new Kinetic.Stage({
         container: 'container',
         width: window.innerWidth,
         height: window.innerHeight
     });
-    var background = new Kinetic.Layer();
+    background = new Kinetic.Layer();
     var animalLayer = new Kinetic.Layer();
     var animalShapes = [];
     var score = 0;
@@ -171,23 +190,7 @@ function initStage(images) {
     stage.add(animalLayer);
 
     drawBackground(background, images.beach, 'Ahoy! Put the animals on the beach!');
-}
 
-window.onload = function () {
-    var sources = {
-        beach: 'beach.png',
-        snake: 'snake.png',
-        snake_glow: 'snake-glow.png',
-        snake_black: 'snake-black.png',
-        lion: 'lion.png',
-        lion_glow: 'lion-glow.png',
-        lion_black: 'lion-black.png',
-        monkey: 'monkey.png',
-        monkey_glow: 'monkey-glow.png',
-        monkey_black: 'monkey-black.png',
-        giraffe: 'giraffe.png',
-        giraffe_glow: 'giraffe-glow.png',
-        giraffe_black: 'giraffe-black.png',
-    };
-    loadImages(sources, initStage);
-};
+    window.addEventListener("orientationchange", function () { drawBackground(background, images.beach, 'Orientation Change! Put the animals on the beach!'); }, false);
+    window.addEventListener("resize", function () { drawBackground(background, images.beach, 'Resize! Put the animals on the beach!'); }, false);
+}
