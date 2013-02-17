@@ -30,6 +30,7 @@ function drawBackground(background, beachImg, text) {
     var canvas = background.getCanvas();
     var context = background.getContext();
 
+    context.clearRect(0, 0, window.innerWidth, window.innerHeight)
     context.drawImage(beachImg, 0, 0,window.innerWidth,window.innerHeight);
     context.font = '20pt Calibri';
     context.textAlign = 'center';
