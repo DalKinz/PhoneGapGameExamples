@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PhoneGapGameExamples", ".", "{81E94083-1850-49DB-9D9C-DAC48C9959D0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/PhoneGapGameExamples"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\GitHub\PhoneGapGameExamples\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\PhoneGapGameExamples\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/PhoneGapGameExamples"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\GitHub\PhoneGapGameExamples\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\PhoneGapGameExamples\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49762"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81E94083-1850-49DB-9D9C-DAC48C9959D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81E94083-1850-49DB-9D9C-DAC48C9959D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

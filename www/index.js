@@ -1,196 +1,55 @@
-﻿window.onload = function () {
-    var sources = {
-        beach: 'beach.png',
-        snake: 'snake.png',
-        snake_glow: 'snake-glow.png',
-        snake_black: 'snake-black.png',
-        lion: 'lion.png',
-        lion_glow: 'lion-glow.png',
-        lion_black: 'lion-black.png',
-        monkey: 'monkey.png',
-        monkey_glow: 'monkey-glow.png',
-        monkey_black: 'monkey-black.png',
-        giraffe: 'giraffe.png',
-        giraffe_glow: 'giraffe-glow.png',
-        giraffe_black: 'giraffe-black.png',
-    };
-    loadImages(sources, initStage);
-};
+﻿$(window).resize(function () {resize();});
 
-function loadImages(sources, callback) {
-    var assetDir = 'http://www.html5canvastutorials.com/demos/assets/';
-    var images = {};
-    var loadedImages = 0;
-    var numImages = 0;
-    for (var src in sources) {
-        numImages++;
-    }
-    for (var src in sources) {
-        images[src] = new Image();
-        images[src].onload = function () {
-            if (++loadedImages >= numImages) {
-                callback(images);
-            }
-        };
-        images[src].src = assetDir + sources[src];
-    }
-}
-function isNearOutline(animal, outline) {
-    var a = animal;
-    var o = outline;
-    if (a.attrs.x > o.x - 20 && a.attrs.x < o.x + 20 && a.attrs.y > o.y - 20 && a.attrs.y < o.y + 20) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-function drawBackground(background, beachImg, text) {
-    var canvas = background.getCanvas();
-    var context = background.getContext();
+function resize() {
+    //$("#gameArea").style.width = $(window).innerWidth;
+    //$("#gameArea").style.height = $(window).innerHeight;
+    var gameArea = document.getElementById("gameArea");
+    gameArea.style.width = window.innerWidth;
+    gameArea.style.height = window.innerHeight;
 
-    context.clearRect(0, 0, window.innerWidth, window.innerHeight)
-    context.drawImage(beachImg, 0, 0,window.innerWidth,window.innerHeight);
-    context.font = '20pt Calibri';
-    context.textAlign = 'center';
-    context.fillStyle = 'white';
-    context.fillText(text, background.getStage().getWidth() / 2, 40);
-}
-function initStage(images) {
-    stage = new Kinetic.Stage({
-        container: 'container',
-        width: window.innerWidth,
-        height: window.innerHeight
+    //$("#gameArea").prop({
+    //    width: $(window).innerWidth,
+    //    height: $(window).innerHeight
+    //});
+
+    //var gameCanvas = document.getElementById("gameCanvas");
+    //gameCanvas.width = window.innerWidth;
+    //gameCanvas.height = window.innerHeight;
+    $('#gameCanvas')[0].prop({
+        width: $(window).innerWidth,
+        height: $(window).innerHeight
     });
-    background = new Kinetic.Layer();
-    var animalLayer = new Kinetic.Layer();
-    var animalShapes = [];
-    var score = 0;
+    //$("#gameCanvas")[0].width = $(window).innerWidth;
+    //$("#gameCanvas")[0].height = $(window).innerHeight;
+}
 
-    // image positions
-    var animals = {
-        snake: {
-            x: 10,
-            y: 70
-        },
-        giraffe: {
-            x: 90,
-            y: 70
-        },
-        monkey: {
-            x: 275,
-            y: 70
-        },
-        lion: {
-            x: 400,
-            y: 70
-        },
-    };
+$(document).ready(function () {
+    var FPS = 30;
+    setInterval(function () {
+        update();
+        draw();
+    }, 1000 / FPS);
+});
 
-    var outlines = {
-        snake_black: {
-            x: 275,
-            y: 350
-        },
-        giraffe_black: {
-            x: 390,
-            y: 250
-        },
-        monkey_black: {
-            x: 300,
-            y: 420
-        },
-        lion_black: {
-            x: 100,
-            y: 390
-        },
-    };
 
-    // create draggable animals
-    for (var key in animals) {
-        // anonymous function to induce scope
-        (function () {
-            var privKey = key;
-            var anim = animals[key];
 
-            var animal = new Kinetic.Image({
-                image: images[key],
-                x: anim.x,
-                y: anim.y,
-                draggable: true
-            });
 
-            animal.createImageHitRegion();
+var textX = 50;
+var textY = 50;
 
-            animal.on('dragstart', function () {
-                animalLayer.draw();
-            });
-            /*
-             * check if animal is in the right spot and
-             * snap into place if it is
-             */
-            animal.on('dragend', function () {
-                var outline = outlines[privKey + '_black'];
-                if (!animal.inRightPlace && isNearOutline(animal, outline)) {
-                    animal.setPosition(outline.x, outline.y);
-                    animalLayer.draw();
-                    animal.inRightPlace = true;
+function update() {
+    textX += 1;
+    textY += 1;
+}
 
-                    if (++score >= 4) {
-                        var text = 'You win! Enjoy your booty!'
-                        drawBackground(background, images.beach, text);
-                    }
-
-                    // disable drag and drop
-                    setTimeout(function () {
-                        animal.setDraggable(false);
-                    }, 50);
-                }
-            });
-            // make animal glow on mouseover
-            animal.on('mouseover', function () {
-                animal.setImage(images[privKey + '_glow']);
-                animalLayer.draw();
-                document.body.style.cursor = 'pointer';
-            });
-            // return animal on mouseout
-            animal.on('mouseout', function () {
-                animal.setImage(images[privKey]);
-                animalLayer.draw();
-                document.body.style.cursor = 'default';
-            });
-
-            animal.on('dragmove', function () {
-                document.body.style.cursor = 'pointer';
-            });
-
-            animalLayer.add(animal);
-            animalShapes.push(animal);
-        })();
-    }
-
-    // create animal outlines
-    for (var key in outlines) {
-        // anonymous function to induce scope
-        (function () {
-            var imageObj = images[key];
-            var out = outlines[key];
-
-            var outline = new Kinetic.Image({
-                image: imageObj,
-                x: out.x,
-                y: out.y
-            });
-
-            animalLayer.add(outline);
-        })();
-    }
-
-    stage.add(background);
-    stage.add(animalLayer);
-
-    drawBackground(background, images.beach, 'Ahoy! Put the animals on the beach!');
-
-    window.addEventListener("orientationchange", function () { drawBackground(background, images.beach, 'Orientation Change! Put the animals on the beach!'); }, false);
-    window.addEventListener("resize", function () { drawBackground(background, images.beach, 'Resize! Put the animals on the beach!'); }, false);
+function draw() {
+    //var context = document.getElementById("gameCanvas").getContext("2d");
+    var canvas = document.getElementById("gameCanvas").hei
+    var context = $("#gameCanvas")[0].getContext("2d");
+    context.clearRect(0, 0, $(window).innerWidth, $(window).innerHeight);
+    context.fillStyle = "#000";
+    context.fillRect(0, 0, $(window).innerWidth, $(window).innerHeight);
+    context.fillStyle = 'red';
+    context.fillRect(30, 30, 50, 50);
+    context.fillText("Sup Bro!", textX, textY);
 }
