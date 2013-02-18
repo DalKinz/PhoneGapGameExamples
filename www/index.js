@@ -15,16 +15,17 @@ function resize() {
     //var gameCanvas = document.getElementById("gameCanvas");
     //gameCanvas.width = window.innerWidth;
     //gameCanvas.height = window.innerHeight;
-    $('#gameCanvas')[0].prop({
-        width: $(window).innerWidth,
-        height: $(window).innerHeight
-    });
+    //$('#gameCanvas')[0].prop({
+    //    width: $(window).innerWidth,
+    //    height: $(window).innerHeight
+    //});
     //$("#gameCanvas")[0].width = $(window).innerWidth;
     //$("#gameCanvas")[0].height = $(window).innerHeight;
 }
 
 $(document).ready(function () {
     var FPS = 30;
+    resize();
     setInterval(function () {
         update();
         draw();
@@ -43,12 +44,10 @@ function update() {
 }
 
 function draw() {
-    //var context = document.getElementById("gameCanvas").getContext("2d");
-    var canvas = document.getElementById("gameCanvas").hei
     var context = $("#gameCanvas")[0].getContext("2d");
-    context.clearRect(0, 0, $(window).innerWidth, $(window).innerHeight);
+    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
     context.fillStyle = "#000";
-    context.fillRect(0, 0, $(window).innerWidth, $(window).innerHeight);
+    context.fillRect(5, 5, window.innerWidth-10, window.innerHeight-10);
     context.fillStyle = 'red';
     context.fillRect(30, 30, 50, 50);
     context.fillText("Sup Bro!", textX, textY);
