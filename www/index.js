@@ -1,54 +1,82 @@
-﻿$(window).resize(function () {resize();});
+﻿var game;
 
-function resize() {
-    //$("#gameArea").style.width = $(window).innerWidth;
-    //$("#gameArea").style.height = $(window).innerHeight;
-    var gameArea = document.getElementById("gameArea");
-    gameArea.style.width = window.innerWidth;
-    gameArea.style.height = window.innerHeight;
+$(window).resize(function () {  game.Width = window.innerWidth;
+                                game.Height = window.innerHeight;
+                                resize(game.Width,game.Height);
+                                });
 
+function resize(width,height) {
+    $("#gameArea").width = width;
+    $("#gameArea").height = height;
+    
     //$("#gameArea").prop({
-    //    width: $(window).innerWidth,
-    //    height: $(window).innerHeight
+    //    width: width,
+    //    height: height
     //});
 
-    //var gameCanvas = document.getElementById("gameCanvas");
-    //gameCanvas.width = window.innerWidth;
-    //gameCanvas.height = window.innerHeight;
-    //$('#gameCanvas')[0].prop({
-    //    width: $(window).innerWidth,
-    //    height: $(window).innerHeight
-    //});
-    //$("#gameCanvas")[0].width = $(window).innerWidth;
-    //$("#gameCanvas")[0].height = $(window).innerHeight;
+    $("#gameCanvas")[0].width = width;
+    $("#gameCanvas")[0].height = height;
 }
 
 $(document).ready(function () {
+    game = {
+        Width: window.innerWidth,
+        Height : window.innerHeight,
+        Context : $("#gameCanvas")[0].getContext("2d")
+    }
+
     var FPS = 30;
-    resize();
+    resize(game.Width,game.Height);
+
     setInterval(function () {
         update();
-        draw();
+        draw(game.Context,game.Width,game.Height);
     }, 1000 / FPS);
 });
 
 
 
 
-var textX = 50;
-var textY = 50;
 
 function update() {
-    textX += 1;
-    textY += 1;
+    text.update();
 }
 
-function draw() {
-    var context = $("#gameCanvas")[0].getContext("2d");
-    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    context.fillStyle = "#000";
-    context.fillRect(5, 5, window.innerWidth-10, window.innerHeight-10);
-    context.fillStyle = 'red';
-    context.fillRect(30, 30, 50, 50);
-    context.fillText("Sup Bro!", textX, textY);
+function draw(context,width,height) {
+    context.clearRect(0, 0, width, height);
+
+    background.draw(context,width,height);
+    text.draw(context);
+    square.draw(context);
+    
 }
+
+var background = {
+    draw: function (context,width,height) {
+        context.fillStyle = "#000";
+        context.fillRect(5, 5, width - 10, height - 10);
+    }
+}
+
+var text = {
+    textX : 50,
+    textY : 50,
+    
+    draw: function (context) {
+        context.fillStyle = "green";
+        context.fillText("Sup Bro!", this.textX, this.textY);
+    },
+
+    update: function () {
+        this.textX += 1;
+        this.textY += 1;
+    }
+}
+
+var square = {
+    draw: function (context) {
+        context.fillStyle = 'red';
+        context.fillRect(30, 30, 50, 50);
+    }
+}
+
