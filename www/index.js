@@ -9,22 +9,19 @@
     Stage: null,
     ImagesFolder: 'resources/images/',
     Manifest: null,
-    Queue: new createjs.LoadQueue(true),
-    ShouldDraw: true
+    Queue: new createjs.LoadQueue(true)
 }
 
 $(window).resize(function () {
     game.Width = window.innerWidth;
     game.Height = window.innerHeight;
-    game.ScaleFactorX = game.Width / game.InitialWidth;
-    game.ScaleFactorY = game.Height / game.InitialHeight;
+    
     resize(game.Width, game.Height);
 });
 
 $(document).ready(function () {
     game.Context = $("#gameCanvas")[0].getContext("2d");
     game.Stage = new createjs.Stage($("#gameCanvas")[0]);
-    //game.Stage.autoClear = false;
     game.Manifest = [{ id: "beach", src: game.ImagesFolder + "beach.png" },
                     { id: "snake", src: game.ImagesFolder + "snake.png" },
                     { id: "snake_glow", src: game.ImagesFolder + "snake-glow.png" },
@@ -56,7 +53,8 @@ function resize(width, height) {
     $("#gameCanvas")[0].width = width;
     $("#gameCanvas")[0].height = height;
 
-    game.shouldDraw = true;
+    game.ScaleFactorX = game.Width / game.InitialWidth;
+    game.ScaleFactorY = game.Height / game.InitialHeight;
 }
 
 function prepareStage() {
@@ -74,11 +72,7 @@ function startGame() {
 }
 
 function tick(event) {
-    //update();
-   // if (game.ShouldDraw == true) {
-        draw(game);
-        game.ShouldDraw = false;
-    //}
+    draw(game);
 }
 
 function update() {
@@ -87,8 +81,6 @@ function update() {
 
 function draw(game) {
     background.draw();
-    //text.draw(game.Context);
-    //square.draw(game.Context);
 }
 
 var background = {
