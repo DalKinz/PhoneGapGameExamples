@@ -6,35 +6,37 @@ $(document).ready(function () {
         Width: window.innerWidth,
         Height : window.innerHeight,
         Context : $("#gameCanvas")[0].getContext("2d"),
-        Sources : {
-            beach: 'beach.png',
-            snake: 'snake.png',
-            snake_glow: 'snake-glow.png',
-            snake_black: 'snake-black.png',
-            lion: 'lion.png',
-            lion_glow: 'lion-glow.png',
-            lion_black: 'lion-black.png',
-            monkey: 'monkey.png',
-            monkey_glow: 'monkey-glow.png',
-            monkey_black: 'monkey-black.png',
-            giraffe: 'giraffe.png',
-            giraffe_glow: 'giraffe-glow.png',
-            giraffe_black: 'giraffe-black.png',
-        },
         Images: null,
-        ImagesFolder: 'resources/images/' 
+        ImagesFolder: 'resources/images/',
+        Manifest: null,
+        Queue : null,
     };
+
+    game.Manifest =[{id:"beach",src : game.ImagesFolder + "beach.png"},
+                    {id:"snake",src : game.ImagesFolder + "snake.png"},
+                    {id:"snake_glow",src : game.ImagesFolder + "snake-glow.png"},
+                    {id:"snake_black",src : game.ImagesFolder + "snake-black.png"},
+                    {id:"lion",src : game.ImagesFolder + "lion.png"},
+                    {id:"lion_glow",src : game.ImagesFolder + "lion-glow.png"},
+                    {id:"lion_black",src : game.ImagesFolder + "lion-black.png"},
+                    {id:"monkey",src : game.ImagesFolder + "monkey.png"},
+                    {id:"monkey_glow",src : game.ImagesFolder + "monkey-glow.png"},
+                    {id:"monkey_black",src : game.ImagesFolder + "monkey-black.png"},
+                    {id:"giraffe",src : game.ImagesFolder + "giraffe.png"},
+                    {id:"giraffe_glow",src : game.ImagesFolder + "giraffe-glow.png"},
+                    {id: "giraffe_black", src: game.ImagesFolder + "giraffe-black.png" }]
 
 
     resize(game.Width,game.Height);
 
-    loadImages(game, function (images) {
-                                        game.Images = images;
-                                        setInterval(function () {
-                                            update();
-                                            draw(game.Context, game.Width, game.Height);
-                                        }, 1000 / game.fps);
-    })
+    game.Queue =  new createjs.LoadQueue(true);
+    game.Queue.addEventListener("complete", function () {
+                                                    setInterval(function () {
+                                                        update();
+                                                        draw(game, game.Width, game.Height);
+                                                    }, 1000 / game.fps);});
+
+    game.Queue.loadManifest(game.Manifest);
 });
 
 $(window).resize(function () {
@@ -56,41 +58,19 @@ function resize(width, height) {
     $("#gameCanvas")[0].height = height;
 }
 
-function loadImages(game, callback) {
-    var images = {};
-    var loadedImages = 0;
-    var numImages = 0;
-    for (var src in game.Sources) {
-        numImages++;
-    }
-    for (var src in game.Sources) {
-        images[src] = new Image();
-        images[src].onload = function () {
-            if (++loadedImages >= numImages) {
-                callback(images);
-            }
-        };
-        images[src].src = game.ImagesFolder + game.Sources[src];
-    }
-}
-
 function update() {
     text.update();
 }
 
-function draw(context,width,height) {
-    //context.clearRect(0, 0, width, height);
-    
-    background.draw(game.Images.beach,context, width, height);
-    text.draw(context);
-    square.draw(context);
+function draw(game,width,height) {
+    background.draw(game.Queue.getResult("beach"),game.Context, width, height);
+    text.draw(game.Context);
+    square.draw(game.Context);
     
 }
 
 var background = {
     draw: function (image,context,width,height) {
-        //context.fillStyle = "#000";
-        //context.fillRect(5, 5, width - 10, height - 10);
         context.drawImage(image, 0, 0,width,height);
     }
 }
@@ -116,4 +96,5 @@ var square = {
         context.fillRect(30, 30, 50, 50);
     }
 }
+
 
