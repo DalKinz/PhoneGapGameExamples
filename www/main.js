@@ -7,7 +7,6 @@
     ScaleFactorY: null,
     Context: null,
     Stage: null,
-    ImagesFolder: 'resources/images/',
     Manifest: null,
     Queue: new createjs.LoadQueue(true)
 }
@@ -22,19 +21,19 @@ $(window).resize(function () {
 $(document).ready(function () {
     game.Context = $("#gameCanvas")[0].getContext("2d");
     game.Stage = new createjs.Stage($("#gameCanvas")[0]);
-    game.Manifest = [{ id: "beach", src: game.ImagesFolder + "beach.png" },
-                    { id: "snake", src: game.ImagesFolder + "snake.png" },
-                    { id: "snake_glow", src: game.ImagesFolder + "snake-glow.png" },
-                    { id: "snake_black", src: game.ImagesFolder + "snake-black.png" },
-                    { id: "lion", src: game.ImagesFolder + "lion.png" },
-                    { id: "lion_glow", src: game.ImagesFolder + "lion-glow.png" },
-                    { id: "lion_black", src: game.ImagesFolder + "lion-black.png" },
-                    { id: "monkey", src: game.ImagesFolder + "monkey.png" },
-                    { id: "monkey_glow", src: game.ImagesFolder + "monkey-glow.png" },
-                    { id: "monkey_black", src: game.ImagesFolder + "monkey-black.png" },
-                    { id: "giraffe", src: game.ImagesFolder + "giraffe.png" },
-                    { id: "giraffe_glow", src: game.ImagesFolder + "giraffe-glow.png" },
-                    { id: "giraffe_black", src: game.ImagesFolder + "giraffe-black.png" }];
+    game.Manifest = [{ id: "beach", src: "resources/images/beach.png" },
+                    { id: "snake", src: "resources/images/snake.png" },
+                    { id: "snake_glow", src: "resources/images/snake-glow.png" },
+                    { id: "snake_black", src: "resources/images/snake-black.png" },
+                    { id: "lion", src: "resources/images/lion.png" },
+                    { id: "lion_glow", src: "resources/images/lion-glow.png" },
+                    { id: "lion_black", src: "resources/images/lion-black.png" },
+                    { id: "monkey", src: "resources/images/monkey.png" },
+                    { id: "monkey_glow", src: "resources/images/monkey-glow.png" },
+                    { id: "monkey_black", src: "resources/images/monkey-black.png" },
+                    { id: "giraffe", src: "resources/images/giraffe.png" },
+                    { id: "giraffe_glow", src: "resources/images/giraffe-glow.png" },
+                    { id: "giraffe_black", src: "resources/images/giraffe-black.png" }];
 
     game.Queue.addEventListener("complete", prepareStage);
     game.Queue.loadManifest(game.Manifest);
@@ -61,7 +60,10 @@ function prepareStage() {
     resize(game.Width, game.Height);
 
     background.bmp = new createjs.Bitmap(game.Queue.getResult("beach"));
+    snake.bmp = new createjs.Bitmap(game.Queue.getResult("snake"));
+
     background.draw();
+    game.Stage.update();
 
     startGame();
 }
@@ -81,6 +83,8 @@ function update() {
 
 function draw(game) {
     background.draw();
+    snake.draw();
+    game.Stage.update();
 }
 
 var background = {
@@ -89,7 +93,17 @@ var background = {
         this.bmp.scaleX = game.ScaleFactorX;
         this.bmp.scaleY = game.ScaleFactorY;
         game.Stage.addChild(this.bmp);
-        game.Stage.update();
+    }
+}
+
+var snake = {
+    bmp: null,
+    x: 100,
+    y: 100,
+    draw: function () {
+        this.bmp.scaleX = game.ScaleFactorX;
+        this.bmp.scaleY = game.ScaleFactorY;
+        game.Stage.addChild(this.bmp);
     }
 }
 
