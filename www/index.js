@@ -1,25 +1,5 @@
 ﻿var game;
 
-function loadImages(game, callback) {
-    var assetDir = 'resources/images/';
-    var images = {};
-    var loadedImages = 0;
-    var numImages = 0;
-    for (var src in game.Sources) {
-        numImages++;
-    }
-    for (var src in game.Sources) {
-        images[src] = new Image();
-        images[src].onload = function () {
-            if (++loadedImages >= numImages) {
-                callback(images);
-            }
-        };
-        images[src].src = assetDir + game.Sources[src];
-    }
-}
-
-
 $(document).ready(function () {
     game = {
         fps: 30,
@@ -41,18 +21,19 @@ $(document).ready(function () {
             giraffe_glow: 'giraffe-glow.png',
             giraffe_black: 'giraffe-black.png',
         },
-        Images : null
+        Images: null,
+        ImagesFolder: 'resources/images/' 
     };
 
 
     resize(game.Width,game.Height);
 
     loadImages(game, function (images) {
-        game.Images = images;
-        setInterval(function () {
-            update();
-            draw(game.Context, game.Width, game.Height);
-        }, 1000 / game.fps);
+                                        game.Images = images;
+                                        setInterval(function () {
+                                            update();
+                                            draw(game.Context, game.Width, game.Height);
+                                        }, 1000 / game.fps);
     })
 });
 
@@ -66,16 +47,32 @@ function resize(width, height) {
     $("#gameArea").width = width;
     $("#gameArea").height = height;
 
-    //$("#gameArea").prop({
-    //    width: width,
-    //    height: height
-    //});
+    $("#gameArea").prop({
+        width: width,
+        height: height
+    });
 
     $("#gameCanvas")[0].width = width;
     $("#gameCanvas")[0].height = height;
 }
 
-
+function loadImages(game, callback) {
+    var images = {};
+    var loadedImages = 0;
+    var numImages = 0;
+    for (var src in game.Sources) {
+        numImages++;
+    }
+    for (var src in game.Sources) {
+        images[src] = new Image();
+        images[src].onload = function () {
+            if (++loadedImages >= numImages) {
+                callback(images);
+            }
+        };
+        images[src].src = game.ImagesFolder + game.Sources[src];
+    }
+}
 
 function update() {
     text.update();
