@@ -120,36 +120,44 @@
 
     snake : {
         bmp: null,
+        scaleFactorX: .5,
+        scaleFactorY: .5,
         draw: function () {
-            this.bmp.scaleX = game.ScaleFactorX;
-            this.bmp.scaleY = game.ScaleFactorY;
+            this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
+            this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             game.Stage.addChild(this.bmp);
         }
     },
 
     alligator : {
         bmp: null,
+        scaleFactorX: .5,
+        scaleFactorY: .5,
         draw: function () {
-            this.bmp.scaleX = game.ScaleFactorX;
-            this.bmp.scaleY = game.ScaleFactorY;
+            this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
+            this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             game.Stage.addChild(this.bmp);
         }
     },
 
     ant : {
         bmp: null,
+        scaleFactorX: .5,
+        scaleFactorY: .5,
         draw: function () {
-            this.bmp.scaleX = game.ScaleFactorX;
-            this.bmp.scaleY = game.ScaleFactorY;
+            this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
+            this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             game.Stage.addChild(this.bmp);
         }
     },
 
     bat : {
         bmp: null,
+        scaleFactorX: .5,
+        scaleFactorY: .5,
         draw: function () {
-            this.bmp.scaleX = game.ScaleFactorX;
-            this.bmp.scaleY = game.ScaleFactorY;
+            this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
+            this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             game.Stage.addChild(this.bmp);
         }
     }
