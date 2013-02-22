@@ -108,7 +108,7 @@
 
             // add a handler to the event object's onMouseMove callback
             // this will be active until the user releases the mouse button:
-            resourceManager.sonic.animation.onMouseMove = function (ev) {
+            resourceManager.sonic.animation.mousedown = function (ev) {
                 resourceManager.sonic.animation.x = ev.stageX + offset.x;
                 resourceManager.sonic.animation.y = ev.stageY + offset.y;
                 // indicate that the stage should be updated on the next tick:
@@ -125,6 +125,11 @@
         // have each monster start at a specific frame
         this.sonic.animation.currentFrame = 0;
         game.Stage.addChild(this.sonic.animation);
+
+        var monster = new Monster("MonsterA", game.Width);
+        monster.x = 300;
+        monster.y = 250;
+        game.Stage.addChild(monster);
     },
 
     createDraggableBitmap : function(imageName){
