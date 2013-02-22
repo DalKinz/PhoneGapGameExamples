@@ -48,18 +48,6 @@
                     { id: "turkey", src: "resources/images/animals/turkey.png" },
                     { id: "turtle", src: "resources/images/animals/turtle.png" },
                     { id: "wolf", src: "resources/images/animals/wolf.png" }
-                    //{ id: "snake", src: "resources/images/snake.png" },
-                    //{ id: "snake_glow", src: "resources/images/snake-glow.png" },
-                    //{ id: "snake_black", src: "resources/images/snake-black.png" },
-                    //{ id: "lion", src: "resources/images/lion.png" },
-                    //{ id: "lion_glow", src: "resources/images/lion-glow.png" },
-                    //{ id: "lion_black", src: "resources/images/lion-black.png" },
-                    //{ id: "monkey", src: "resources/images/monkey.png" },
-                    //{ id: "monkey_glow", src: "resources/images/monkey-glow.png" },
-                    //{ id: "monkey_black", src: "resources/images/monkey-black.png" },
-                    //{ id: "giraffe", src: "resources/images/giraffe.png" },
-                    //{ id: "giraffe_glow", src: "resources/images/giraffe-glow.png" },
-                    //{ id: "giraffe_black", src: "resources/images/giraffe-black.png" }
     ],
 
     loadResources: function (game) {
@@ -85,6 +73,26 @@
         this.bat.bmp.x = 200;
         this.bat.bmp.y = 100;
         game.Stage.addChild(this.bat.bmp);
+
+        this.ninja.spriteSheet = new createjs.SpriteSheet({images: ["resources/images/spritesheets/ninja.png"],
+                                                            frames: { width: 150, height: 200},
+                                                            animations: {
+                                                                slice: [0, 5, "slice"],
+                                                                run: [6,21,"run"]
+                                                            }
+        });
+
+        this.ninja.animation = new createjs.BitmapAnimation(this.ninja.spriteSheet);
+        this.ninja.animation.gotoAndPlay("run");     //animate
+        this.ninja.animation.name = "monster1";
+        this.ninja.animation.direction = 90;
+        this.ninja.animation.vX = 4;
+        this.ninja.animation.x = 16;
+        this.ninja.animation.y = 32;
+
+        // have each monster start at a specific frame
+        this.ninja.animation.currentFrame = 0;
+        game.Stage.addChild(this.ninja.animation);
     },
 
     createDraggableBitmap : function(imageName){
@@ -169,6 +177,7 @@
 
     ninja: {
         spriteSheet: null,
+        animation: null,
         draw: function () {
 
         }
