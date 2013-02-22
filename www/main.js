@@ -48,6 +48,7 @@ function resize(width, height) {
 
 function prepareStage() {
     resize(game.Width, game.Height);
+    game.Stage.autoClear = false;
     resourceManager.loadResources(game);
     
     resourceManager.background.draw();
@@ -58,6 +59,7 @@ function prepareStage() {
 
 function startGame() {
     createjs.Ticker.setFPS(60);
+    createjs.Ticker.useRAF = true;
     createjs.Ticker.addEventListener("tick", tick);
 }
 
@@ -75,7 +77,8 @@ function draw(game) {
     resourceManager.alligator.draw();
     resourceManager.ant.draw();
     resourceManager.bat.draw();
-
+    resourceManager.ninja.draw();
+    
     game.Stage.update();
 }
 
