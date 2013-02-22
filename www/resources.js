@@ -64,22 +64,27 @@
 
     loadResources: function (game) {
         this.background.bmp = new createjs.Bitmap(game.Queue.getResult("background"));
+        game.Stage.addChild(this.background.bmp);
 
         this.snake.bmp = resourceManager.createDraggableBitmap("snake");
         this.snake.bmp.x = 10;
         this.snake.bmp.y = 10;
+        game.Stage.addChild(this.snake.bmp);
 
         this.alligator.bmp = resourceManager.createDraggableBitmap("alligator");
         this.alligator.bmp.x = 200;
         this.alligator.bmp.y = 10;
+        game.Stage.addChild(this.alligator.bmp);
 
         this.ant.bmp = resourceManager.createDraggableBitmap("ant");
         this.ant.bmp.x = 10;
         this.ant.bmp.y = 100;
+        game.Stage.addChild(this.ant.bmp);
 
         this.bat.bmp = resourceManager.createDraggableBitmap("bat");
         this.bat.bmp.x = 200;
         this.bat.bmp.y = 100;
+        game.Stage.addChild(this.bat.bmp);
     },
 
     createDraggableBitmap : function(imageName){
@@ -114,7 +119,7 @@
                     draw: function () {
                         this.bmp.scaleX = game.ScaleFactorX;
                         this.bmp.scaleY = game.ScaleFactorY;
-                        game.Stage.addChild(this.bmp);
+                        //game.Stage.addChild(this.bmp);
                     }
     },
 
@@ -125,7 +130,7 @@
         draw: function () {
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
-            game.Stage.addChild(this.bmp);
+            //game.Stage.addChild(this.bmp);
         }
     },
 
@@ -136,7 +141,7 @@
         draw: function () {
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
-            game.Stage.addChild(this.bmp);
+            //game.Stage.addChild(this.bmp);
         }
     },
 
@@ -147,7 +152,7 @@
         draw: function () {
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
-            game.Stage.addChild(this.bmp);
+            //game.Stage.addChild(this.bmp);
         }
     },
 
@@ -158,7 +163,14 @@
         draw: function () {
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
-            game.Stage.addChild(this.bmp);
+            //game.Stage.addChild(this.bmp);
+        }
+    },
+
+    ninja: {
+        spriteSheet: null,
+        draw: function () {
+
         }
     }
 }
