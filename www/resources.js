@@ -71,58 +71,6 @@
         this.bat.bmp.x = Math.round(game.ScaleFactorX * 200);
         this.bat.bmp.y = Math.round(game.ScaleFactorY * 100);
         game.Stage.addChild(this.bat.bmp);
-
-        //this.ninja.spriteSheet = new createjs.SpriteSheet({images: ["resources/images/spritesheets/ninja.png"],
-        //                                                    frames: { width: 150, height: 194},
-        //                                                    animations: {
-        //                                                        slice: [0, 5, "slice"],
-        //                                                        run: [6,21,"run"]
-        //                                                    }
-        //});
-
-        //this.ninja.animation = new createjs.BitmapAnimation(this.ninja.spriteSheet);
-        //this.ninja.animation.gotoAndPlay("run");     //animate
-        //this.ninja.animation.name = "monster1";
-        //this.ninja.animation.direction = 90;
-        //this.ninja.animation.vX = 4;
-        //this.ninja.animation.x = 16;
-        //this.ninja.animation.y = 32;
-
-        //// have each monster start at a specific frame
-        //this.ninja.animation.currentFrame = 0;
-        //game.Stage.addChild(this.ninja.animation);
-
-        //this.sonic.spriteSheet = new createjs.SpriteSheet({images: ["resources/images/spritesheets/sonic.png"],
-        //                                                    frames: { width: 103, height: 120},
-        //                                                    animations: {
-        //                                                        run: [0, 13, "run"] 
-        //                                                    }
-        //});
-
-        //this.sonic.animation = new createjs.BitmapAnimation(this.sonic.spriteSheet);
-        //this.sonic.animation.click = function (evt) {// bump the target in front of it's siblings:
-        //    game.Stage.addChild(resourceManager.sonic.animation);
-        //    var offset = { x: resourceManager.sonic.animation.x - evt.stageX, y: resourceManager.sonic.animation.y - evt.stageY };
-
-        //    // add a handler to the event object's onMouseMove callback
-        //    // this will be active until the user releases the mouse button:
-        //    resourceManager.sonic.animation.mousedown = function (ev) {
-        //        resourceManager.sonic.animation.x = ev.stageX + offset.x;
-        //        resourceManager.sonic.animation.y = ev.stageY + offset.y;
-        //        // indicate that the stage should be updated on the next tick:
-        //        //update = true;
-        //    }
-        //};
-        //this.sonic.animation.gotoAndPlay("run");     //animate
-        //this.sonic.animation.name = "sonic1";
-        //this.sonic.animation.direction = 90;
-        //this.sonic.animation.vX = 4;
-        //this.sonic.animation.x = 200;
-        //this.sonic.animation.y = 100;
-
-        //// have each monster start at a specific frame
-        //this.sonic.animation.currentFrame = 0;
-        //game.Stage.addChild(this.sonic.animation);
     },
 
     createDraggableBitmap : function(imageName){
@@ -166,8 +114,8 @@
         scaleFactorX: .5,
         scaleFactorY: .5,
         draw: function () {
-            //this.bmp.x = game.ScaleFactorX * 10;
-            //this.bmp.y = game.ScaleFactorY * 10;
+            this.bmp.x = game.ScaleFactorX * this.bmp.x;
+            this.bmp.y = game.ScaleFactorY * this.bmp.y;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             //game.Stage.addChild(this.bmp);
