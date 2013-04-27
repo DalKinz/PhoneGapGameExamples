@@ -77,7 +77,6 @@ function draw(game) {
     resourceManager.alligator.draw();
     resourceManager.ant.draw();
     resourceManager.bat.draw();
-    resourceManager.ninja.draw();
     
     game.Stage.update();
 }
