@@ -53,23 +53,23 @@
         game.Stage.addChild(this.background.bmp);
 
         this.snake.bmp = resourceManager.createDraggableBitmap("snake");
-        this.snake.bmp.x = 10;
-        this.snake.bmp.y = 10;
+        this.snake.bmp.x = game.ScaleFactorX * 10;
+        this.snake.bmp.y = game.ScaleFactorY * 10;
         game.Stage.addChild(this.snake.bmp);
 
         this.alligator.bmp = resourceManager.createDraggableBitmap("alligator");
-        this.alligator.bmp.x = 200;
-        this.alligator.bmp.y = 10;
+        this.alligator.bmp.x = game.ScaleFactorX * 200;
+        this.alligator.bmp.y = game.ScaleFactorY * 10;
         game.Stage.addChild(this.alligator.bmp);
 
         this.ant.bmp = resourceManager.createDraggableBitmap("ant");
-        this.ant.bmp.x = 10;
-        this.ant.bmp.y = 100;
+        this.ant.bmp.x = game.ScaleFactorX * 10;
+        this.ant.bmp.y = game.ScaleFactorY * 100;
         game.Stage.addChild(this.ant.bmp);
 
         this.bat.bmp = resourceManager.createDraggableBitmap("bat");
-        this.bat.bmp.x = 200;
-        this.bat.bmp.y = 100;
+        this.bat.bmp.x = game.ScaleFactorX * 200;
+        this.bat.bmp.y = game.ScaleFactorY * 100;
         game.Stage.addChild(this.bat.bmp);
 
         //this.ninja.spriteSheet = new createjs.SpriteSheet({images: ["resources/images/spritesheets/ninja.png"],
@@ -166,6 +166,8 @@
         scaleFactorX: .5,
         scaleFactorY: .5,
         draw: function () {
+            this.bmp.x = game.ScaleFactorX * 10;
+            this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             //game.Stage.addChild(this.bmp);
@@ -177,6 +179,8 @@
         scaleFactorX: .5,
         scaleFactorY: .5,
         draw: function () {
+            this.bmp.x = game.ScaleFactorX * 10;
+            this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             //game.Stage.addChild(this.bmp);
@@ -188,6 +192,8 @@
         scaleFactorX: .5,
         scaleFactorY: .5,
         draw: function () {
+            this.bmp.x = game.ScaleFactorX * 10;
+            this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             //game.Stage.addChild(this.bmp);
@@ -199,6 +205,8 @@
         scaleFactorX: .5,
         scaleFactorY: .5,
         draw: function () {
+            this.bmp.x = game.ScaleFactorX * 10;
+            this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             //game.Stage.addChild(this.bmp);
