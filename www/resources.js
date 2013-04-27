@@ -166,8 +166,8 @@
         scaleFactorX: .5,
         scaleFactorY: .5,
         draw: function () {
-            this.bmp.x = Math.round(game.ScaleFactorX * 10);
-            this.bmp.y = Math.round(game.ScaleFactorY * 10);
+            //this.bmp.x = game.ScaleFactorX * 10;
+            //this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             //game.Stage.addChild(this.bmp);
@@ -179,8 +179,8 @@
         scaleFactorX: .5,
         scaleFactorY: .5,
         draw: function () {
-            this.bmp.x = Math.round(game.ScaleFactorX * 10);
-            this.bmp.y = Math.round(game.ScaleFactorY * 10);
+            //this.bmp.x = game.ScaleFactorX * 10;
+            //this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             //game.Stage.addChild(this.bmp);
@@ -192,8 +192,8 @@
         scaleFactorX: .5,
         scaleFactorY: .5,
         draw: function () {
-            this.bmp.x = Math.round(game.ScaleFactorX * 10);
-            this.bmp.y = Math.round(game.ScaleFactorY * 10);
+            //this.bmp.x = game.ScaleFactorX * 10;
+            //this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             //game.Stage.addChild(this.bmp);
@@ -205,8 +205,8 @@
         scaleFactorX: .5,
         scaleFactorY: .5,
         draw: function () {
-            this.bmp.x = Math.round(game.ScaleFactorX * 10);
-            this.bmp.y = Math.round(game.ScaleFactorY * 10);
+            //this.bmp.x = game.ScaleFactorX * 10;
+            //this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
             this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
             //game.Stage.addChild(this.bmp);
