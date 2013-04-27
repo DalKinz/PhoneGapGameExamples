@@ -7,7 +7,8 @@
     ScaleFactorY: null,
     Context: null,
     Stage: null,
-    Queue: new createjs.LoadQueue(true)
+    Queue: new createjs.LoadQueue(true),
+    FinishedLoading: false
 }
 
 $(window).resize(function () {
@@ -44,6 +45,14 @@ function resize(width, height) {
 
     game.ScaleFactorX = game.Width / game.InitialWidth;
     game.ScaleFactorY = game.Height / game.InitialHeight;
+
+    if (game.FinishedLoading == true) {
+        resourceManager.background.resize();
+        resourceManager.snake.resize();
+        //resourceManager.alligator.resize();
+        //resourceManager.ant.resize();
+        //resourceManager.bat.resize();
+    }
 }
 
 function prepareStage() {
