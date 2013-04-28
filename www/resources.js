@@ -1,7 +1,6 @@
 ﻿var resourceManager = {
     queue: new createjs.LoadQueue(true),
-    manifest: [{ id: "background", src: "resources/images/background.png" },
-                { id: "alligator", src: "resources/images/animals/alligator.png" },
+    manifest: [{ id: "alligator", src: "resources/images/animals/alligator.png" },
                 { id: "ant", src: "resources/images/animals/ant.png" },
                 { id: "bat", src: "resources/images/animals/bat.png" },
                 { id: "bear", src: "resources/images/animals/bear.png" },
@@ -49,9 +48,6 @@
                 { id: "wolf", src: "resources/images/animals/wolf.png" }],
 
     loadResources: function (game) {
-        this.background.bmp = new createjs.Bitmap(game.Queue.getResult("background"));
-        game.Stage.addChild(this.background.bmp);
-
         this.snake.bmp = resourceManager.createDraggableBitmap("snake");
         this.snake.bmp.x = game.ScaleFactorX * 10;
         this.snake.bmp.y = game.ScaleFactorY * 10;
@@ -92,25 +88,7 @@
             }
         }
 
-        bmp.onMouseOver = function () {
-            bmp.scaleX = bmp.scaleY = bmp.scale * 1.2;
-        }
-        bmp.onMouseOut = function () {
-            bmp.scaleX = bmp.scaleY = bmp.scale;
-        }
-
         return bmp;
-    },
-
-    background : {
-                    bmp: null,
-                    draw: function () {
-
-                    },
-                    resize: function () {
-                        this.bmp.scaleX = game.ScaleFactorX;
-                        this.bmp.scaleY = game.ScaleFactorY;
-                    }
     },
 
     snake : {

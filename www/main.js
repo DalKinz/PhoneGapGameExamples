@@ -19,6 +19,10 @@ $(window).resize(function () {
 });
 
 $(document).ready(function () {
+    $("body").css("background-image", "url(resources/images/backgrounds/country.svg)");
+    $("body").css("background-repeat", "no-repeat");
+    $("body").css("background-size", "cover");
+
     game.Context = $("#gameCanvas")[0].getContext("2d");
     game.Stage = new createjs.Stage($("#gameCanvas")[0]);
     createjs.Touch.enable(game.Stage);
@@ -29,7 +33,6 @@ $(document).ready(function () {
     game.Queue.addEventListener("complete", prepareStage);
     game.Queue.loadManifest(resourceManager.manifest);
 });
-
 
 function resize(width, height) {
     $("#gameArea").width = width;
@@ -47,7 +50,6 @@ function resize(width, height) {
     game.ScaleFactorY = game.Height / game.InitialHeight;
 
     if (game.FinishedLoading == true) {
-        resourceManager.background.resize();
         resourceManager.snake.resize();
         //resourceManager.alligator.resize();
         //resourceManager.ant.resize();
@@ -60,7 +62,6 @@ function prepareStage() {
     game.Stage.autoClear = false;
     resourceManager.loadResources(game);
     
-    resourceManager.background.draw();
     game.Stage.update();
 
     startGame();
@@ -81,7 +82,6 @@ function update() {
 }
 
 function draw(game) {
-    resourceManager.background.draw();
     resourceManager.snake.draw();
     resourceManager.alligator.draw();
     resourceManager.ant.draw();
