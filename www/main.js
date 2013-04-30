@@ -7,7 +7,7 @@
     ScaleFactorY: null,
     Context: null,
     Stage: null,
-    Queue: new createjs.LoadQueue(true),
+    Queue: new createjs.LoadQueue(false),
     FinishedLoading: false
 }
 
@@ -29,7 +29,7 @@ $(document).ready(function () {
     game.Stage.enableMouseOver(10);
     game.Stage.mouseMoveOutside = true;
 
-    game.Queue.setUseXHR(false);
+    //game.Queue.setUseXHR(false);
     game.Queue.loadManifest(resourceManager.manifest);
 
     game.Queue.addEventListener("complete", prepareStage);
@@ -60,7 +60,7 @@ function resize(width, height) {
 
 function prepareStage() {
     resize(game.Width, game.Height);
-    game.Stage.autoClear = false;
+    game.Stage.autoClear = true;
     resourceManager.loadResources(game);
     
     game.Stage.update();

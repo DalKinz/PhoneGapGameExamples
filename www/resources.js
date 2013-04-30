@@ -1,5 +1,4 @@
 ﻿var resourceManager = {
-    queue: new createjs.LoadQueue(false),
     manifest: [{ id: "alligator", src: "resources/images/animals/alligator.png" },
                 { id: "ant", src: "resources/images/animals/ant.png" },
                 { id: "bat", src: "resources/images/animals/bat.png" },
