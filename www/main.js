@@ -26,7 +26,6 @@ $(document).ready(function () {
     game.Context = $("#gameCanvas")[0].getContext("2d");
     game.Stage = new createjs.Stage($("#gameCanvas")[0]);
     createjs.Touch.enable(game.Stage);
-    createjs.Touch.enable(game.Stage);
     game.Stage.enableMouseOver(10);
     game.Stage.mouseMoveOutside = true;
 
