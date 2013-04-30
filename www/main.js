@@ -29,8 +29,10 @@ $(document).ready(function () {
     game.Stage.enableMouseOver(10);
     game.Stage.mouseMoveOutside = true;
 
-    game.Queue.addEventListener("complete", prepareStage);
+    game.Queue.setUseXHR(false);
     game.Queue.loadManifest(resourceManager.manifest);
+
+    game.Queue.addEventListener("complete", prepareStage);
 });
 
 function resize(width, height) {
@@ -86,6 +88,11 @@ function draw(game) {
     resourceManager.ant.draw();
     resourceManager.bat.draw();
     
+    //var text = new createjs.Text("Hello World", "20px Arial", "#ff7700");
+    //text.x = 100;
+    //text.textBaseline = "alphabetic";
+    //game.Stage.addChild(text);
+
     game.Stage.update();
 }
 

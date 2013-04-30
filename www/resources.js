@@ -1,5 +1,5 @@
 ﻿var resourceManager = {
-    queue: new createjs.LoadQueue(true),
+    queue: new createjs.LoadQueue(false),
     manifest: [{ id: "alligator", src: "resources/images/animals/alligator.png" },
                 { id: "ant", src: "resources/images/animals/ant.png" },
                 { id: "bat", src: "resources/images/animals/bat.png" },
@@ -71,8 +71,9 @@
         game.FinishedLoading = true;
     },
 
-    createDraggableBitmap : function(imageName){
-        var bmp = new createjs.Bitmap(game.Queue.getResult(imageName));
+    createDraggableBitmap: function (imageName) {
+        var result = game.Queue.getResult(imageName)
+        var bmp = new createjs.Bitmap(result);
         bmp.name = "bmp_" + imageName;
         bmp.onPress = function (evt) {// bump the target in front of it's siblings:
             game.Stage.addChild(bmp);
