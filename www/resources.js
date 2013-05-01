@@ -76,6 +76,7 @@
         bmp.name = "bmp_" + imageName;
         bmp.onPress = function (evt) {// bump the target in front of it's siblings:
             game.Stage.addChild(bmp);
+            game.Stage.update();
             var offset = { x: bmp.x - evt.stageX, y: bmp.y - evt.stageY };
 
             // add a handler to the event object's onMouseMove callback
