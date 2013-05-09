@@ -28,7 +28,7 @@ $(document).ready(function () {
     createjs.Touch.enable(game.Stage);
     game.Stage.enableMouseOver(10);
     game.Stage.mouseMoveOutside = true;
-
+    game.Stage.autoClear = true;
     //game.Queue.setUseXHR(false);
     game.Queue.loadManifest(resourceManager.manifest);
 
@@ -60,10 +60,9 @@ function resize(width, height) {
 
 function prepareStage() {
     resize(game.Width, game.Height);
-    game.Stage.autoClear = true;
     resourceManager.loadResources(game);
     
-    game.Stage.update();
+    //game.Stage.update();
 
     startGame();
 }
