@@ -1,10 +1,6 @@
 ﻿var game = {
-    InitialWidth: 800,
-    InitialHeight: 1280,
     Width: window.innerWidth,
     Height: window.innerHeight,
-    ScaleFactorX: null,
-    ScaleFactorY: null,
     Context: null,
     Stage: null,
     Queue: new createjs.LoadQueue(false),
@@ -26,13 +22,14 @@ $(document).ready(function () {
 
     game.Context = $("#gameCanvas")[0].getContext("2d");
     game.Stage = new createjs.Stage($("#gameCanvas")[0]);
+
     createjs.Touch.enable(game.Stage);
-    game.Stage.enableMouseOver(10);
+
+    game.Stage.enableMouseOver(20);
     game.Stage.mouseMoveOutside = true;
     game.Stage.autoClear = true;
-    //game.Queue.setUseXHR(false);
-    game.Queue.loadManifest(resourceManager.manifest);
 
+    game.Queue.loadManifest(resourceManager.manifest);
     game.Queue.addEventListener("complete", prepareStage);
 });
 
@@ -47,9 +44,6 @@ function resize(width, height) {
 
     $("#gameCanvas")[0].width = width;
     $("#gameCanvas")[0].height = height;
-
-    game.ScaleFactorX = game.Width / game.InitialWidth;
-    game.ScaleFactorY = game.Height / game.InitialHeight;
 
     if (game.FinishedLoading == true) {
         resourceManager.snake.resize();
@@ -76,16 +70,17 @@ function startGame() {
 
 function tick(event) {
     if (game.Update == true) {
+        drawStatus();
         game.Stage.update();
         game.Update = false;
     }
 }
 
 function update() {
-    text.update();
+    
 }
 
-function drawStatus(game) {
+function drawStatus() {
     var text = new createjs.Text("Hello World", "20px Arial", "#ff7700");
     text.x = 100;
     text.textBaseline = "alphabetic";

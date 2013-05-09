@@ -47,26 +47,11 @@
                 { id: "wolf", src: "resources/images/animals/wolf.png" }],
 
     loadResources: function (game) {
-        this.snake.bmp = resourceManager.createDraggableBitmap("snake");
-        this.snake.bmp.x = 10;
-        this.snake.bmp.y = 10;
-        game.Stage.addChild(this.snake.bmp);
-
-        this.alligator.bmp = resourceManager.createDraggableBitmap("alligator");
-        this.alligator.bmp.x = 200;
-        this.alligator.bmp.y = 10;
-        game.Stage.addChild(this.alligator.bmp);
-
-        this.ant.bmp = resourceManager.createDraggableBitmap("ant");
-        this.ant.bmp.x = 10;
-        this.ant.bmp.y = 100;
-        game.Stage.addChild(this.ant.bmp);
-
-        this.bat.bmp = resourceManager.createDraggableBitmap("bat");
-        this.bat.bmp.x = 200;
-        this.bat.bmp.y = 100;
-        game.Stage.addChild(this.bat.bmp);
-
+        this.snake = new Animal("snake",10,10);
+        this.alligator = new Animal("alligator", 200, 10);
+        this.ant = new Animal("ant", 200, 100);
+        this.bat = new Animal("bat",200,200);
+        
         game.FinishedLoading = true;
     },
 
@@ -75,72 +60,40 @@
         var bmp = new createjs.Bitmap(result);
         bmp.name = "bmp_" + imageName;
         bmp.onPress = function (evt) {
-                                        // bump the target in front of it's siblings:
-                                        // game.Stage.addChild(bmp);
+            // bump the target in front of it's siblings:
+            // game.Stage.addChild(bmp);
 
-                                        var offset = { x: bmp.x - evt.stageX, y: bmp.y - evt.stageY };
+            var offset = { x: bmp.x - evt.stageX, y: bmp.y - evt.stageY };
 
-                                        // add a handler to the event object's onMouseMove callback
-                                        // this will be active until the user releases the mouse button:
-                                        evt.onMouseMove = function (ev) {
-                                            bmp.x = ev.stageX + offset.x;
-                                            bmp.y = ev.stageY + offset.y;
-                                            // indicate that the stage should be updated on the next tick:
-                                            game.Update = true;
-                                        }
+            // add a handler to the event object's onMouseMove callback
+            // this will be active until the user releases the mouse button:
+            evt.onMouseMove = function (ev) {
+                bmp.x = ev.stageX + offset.x;
+                bmp.y = ev.stageY + offset.y;
+                // indicate that the stage should be updated on the next tick:
+                game.Update = true;
+            }
         }
 
         return bmp;
     },
 
-    snake : {
-        bmp: null,
-        scaleFactorX: .5,
-        scaleFactorY: .5,
-        resize: function () {
-            //this.bmp.x = game.ScaleFactorX * this.bmp.x;
-            //this.bmp.y = game.ScaleFactorY * this.bmp.y;
-            this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
-            this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
-        }
-    },
+    snake: null,
+    alligator: null,
+    ant: null,
+    bat: null
+}
 
-    alligator : {
-        bmp: null,
-        scaleFactorX: .5,
-        scaleFactorY: .5,
-        resize: function () {
-            //this.bmp.x = game.ScaleFactorX * 10;
-            //this.bmp.y = game.ScaleFactorY * 10;
-            this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
-            this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
-            //game.Stage.addChild(this.bmp);
-        }
-    },
+var Animal = function (typename, x, y) {
+    this.bmp = resourceManager.createDraggableBitmap(typename);
+    this.bmp.x = x;
+    this.bmp.y = y;
+    game.Stage.addChild(this.bmp);
+};
 
-    ant : {
-        bmp: null,
-        scaleFactorX: .5,
-        scaleFactorY: .5,
-        resize: function () {
-            //this.bmp.x = game.ScaleFactorX * 10;
-            //this.bmp.y = game.ScaleFactorY * 10;
-            this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
-            this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
-            //game.Stage.addChild(this.bmp);
-        }
-    },
-
-    bat : {
-        bmp: null,
-        scaleFactorX: .5,
-        scaleFactorY: .5,
-        resize: function () {
-            //this.bmp.x = game.ScaleFactorX * 10;
-            //this.bmp.y = game.ScaleFactorY * 10;
-            this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
-            this.bmp.scaleY = this.scaleFactorY * game.ScaleFactorY;
-            //game.Stage.addChild(this.bmp);
-        }
-    }
+Animal.prototype.scaleFactorX = .5;
+Animal.prototype.scaleFactorY = .5;
+Animal.prototype.resize = function () {
+    this.bmp.scaleX = this.scaleFactorX;
+    this.bmp.scaleY = this.scaleFactorY;
 }
