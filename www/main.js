@@ -9,10 +9,7 @@
 }
 
 $(window).resize(function () {
-    game.Width = window.innerWidth;
-    game.Height = window.innerHeight;
-    
-    resize(game.Width, game.Height);
+    resize(window.innerWidth, window.innerHeight);
 });
 
 $(document).ready(function () {
@@ -34,6 +31,9 @@ $(document).ready(function () {
 });
 
 function resize(width, height) {
+    game.Width = width;
+    game.Height = height;
+
     $("#gameArea").width = width;
     $("#gameArea").height = height;
 
@@ -56,7 +56,7 @@ function resize(width, height) {
 }
 
 function prepareStage() {
-    resize(game.Width, game.Height);
+    resize(window.innerWidth, window.innerHeight);
     resourceManager.loadResources(game);
 
     startGame();
@@ -83,6 +83,7 @@ function update() {
 function drawStatus() {
     var text = new createjs.Text("Hello World", "20px Arial", "#ff7700");
     text.x = 100;
+    text.y = 100;
     text.textBaseline = "alphabetic";
     game.Stage.addChild(text);
 }
