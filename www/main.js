@@ -1,6 +1,6 @@
 ﻿var game = {
-    InitialWidth: 1280,
-    InitialHeight: 800,
+    InitialWidth: 800,
+    InitialHeight: 1280,
     Width: window.innerWidth,
     Height: window.innerHeight,
     ScaleFactorX: null,
@@ -8,7 +8,8 @@
     Context: null,
     Stage: null,
     Queue: new createjs.LoadQueue(false),
-    FinishedLoading: false
+    FinishedLoading: false,
+    Update: false
 }
 
 $(window).resize(function () {
@@ -52,17 +53,17 @@ function resize(width, height) {
 
     if (game.FinishedLoading == true) {
         resourceManager.snake.resize();
-        //resourceManager.alligator.resize();
-        //resourceManager.ant.resize();
-        //resourceManager.bat.resize();
+        resourceManager.alligator.resize();
+        resourceManager.ant.resize();
+        resourceManager.bat.resize();
     }
+
+    game.Update = true;
 }
 
 function prepareStage() {
     resize(game.Width, game.Height);
     resourceManager.loadResources(game);
-    
-    //game.Stage.update();
 
     startGame();
 }
@@ -74,24 +75,20 @@ function startGame() {
 }
 
 function tick(event) {
-    draw(game);
+    if (game.Update == true) {
+        game.Stage.update();
+        game.Update = false;
+    }
 }
 
 function update() {
     text.update();
 }
 
-function draw(game) {
-    resourceManager.snake.draw();
-    resourceManager.alligator.draw();
-    resourceManager.ant.draw();
-    resourceManager.bat.draw();
-    
-    //var text = new createjs.Text("Hello World", "20px Arial", "#ff7700");
-    //text.x = 100;
-    //text.textBaseline = "alphabetic";
-    //game.Stage.addChild(text);
-
-    game.Stage.update();
+function drawStatus(game) {
+    var text = new createjs.Text("Hello World", "20px Arial", "#ff7700");
+    text.x = 100;
+    text.textBaseline = "alphabetic";
+    game.Stage.addChild(text);
 }
 

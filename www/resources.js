@@ -74,19 +74,20 @@
         var result = game.Queue.getResult(imageName)
         var bmp = new createjs.Bitmap(result);
         bmp.name = "bmp_" + imageName;
-        bmp.onPress = function (evt) {// bump the target in front of it's siblings:
-            game.Stage.addChild(bmp);
+        bmp.onPress = function (evt) {
+                                        // bump the target in front of it's siblings:
+                                        // game.Stage.addChild(bmp);
 
-            var offset = { x: bmp.x - evt.stageX, y: bmp.y - evt.stageY };
+                                        var offset = { x: bmp.x - evt.stageX, y: bmp.y - evt.stageY };
 
-            // add a handler to the event object's onMouseMove callback
-            // this will be active until the user releases the mouse button:
-            evt.onMouseMove = function (ev) {
-                bmp.x = ev.stageX + offset.x;
-                bmp.y = ev.stageY + offset.y;
-                // indicate that the stage should be updated on the next tick:
-                //update = true;
-            }
+                                        // add a handler to the event object's onMouseMove callback
+                                        // this will be active until the user releases the mouse button:
+                                        evt.onMouseMove = function (ev) {
+                                            bmp.x = ev.stageX + offset.x;
+                                            bmp.y = ev.stageY + offset.y;
+                                            // indicate that the stage should be updated on the next tick:
+                                            game.Update = true;
+                                        }
         }
 
         return bmp;
@@ -96,8 +97,6 @@
         bmp: null,
         scaleFactorX: .5,
         scaleFactorY: .5,
-        draw: function () {
-        },
         resize: function () {
             //this.bmp.x = game.ScaleFactorX * this.bmp.x;
             //this.bmp.y = game.ScaleFactorY * this.bmp.y;
@@ -110,7 +109,7 @@
         bmp: null,
         scaleFactorX: .5,
         scaleFactorY: .5,
-        draw: function () {
+        resize: function () {
             //this.bmp.x = game.ScaleFactorX * 10;
             //this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
@@ -123,7 +122,7 @@
         bmp: null,
         scaleFactorX: .5,
         scaleFactorY: .5,
-        draw: function () {
+        resize: function () {
             //this.bmp.x = game.ScaleFactorX * 10;
             //this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
@@ -136,7 +135,7 @@
         bmp: null,
         scaleFactorX: .5,
         scaleFactorY: .5,
-        draw: function () {
+        resize: function () {
             //this.bmp.x = game.ScaleFactorX * 10;
             //this.bmp.y = game.ScaleFactorY * 10;
             this.bmp.scaleX = this.scaleFactorX * game.ScaleFactorX;
