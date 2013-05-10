@@ -1,4 +1,8 @@
 ﻿var resourceManager = {
+    snake: null,
+    alligator: null,
+    ant: null,
+    bat: null,
     manifest: [{ id: "alligator", src: "resources/images/animals/alligator.png" },
                 { id: "ant", src: "resources/images/animals/ant.png" },
                 { id: "bat", src: "resources/images/animals/bat.png" },
@@ -79,12 +83,7 @@
         }
 
         return bmp;
-    },
-
-    snake: null,
-    alligator: null,
-    ant: null,
-    bat: null
+    }
 }
 
 var Animal = function (typename, x, y) {

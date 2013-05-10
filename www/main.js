@@ -14,7 +14,7 @@ $(window).resize(function () {
 });
 
 $(document).ready(function () {
-    $("#gameCanvas").css("background-image", "url(resources/images/backgrounds/house-with-snow.svg)");
+    $("#gameCanvas").css("background-image", "url(resources/images/backgrounds/forest.svg)");
     $("#gameCanvas").css("background-repeat", "no-repeat");
     $("#gameCanvas").css("background-size", "cover");
 
