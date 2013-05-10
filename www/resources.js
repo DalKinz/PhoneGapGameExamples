@@ -44,7 +44,8 @@
                 { id: "tiger", src: "resources/images/animals/tiger.png" },
                 { id: "turkey", src: "resources/images/animals/turkey.png" },
                 { id: "turtle", src: "resources/images/animals/turtle.png" },
-                { id: "wolf", src: "resources/images/animals/wolf.png" }],
+                { id: "wolf", src: "resources/images/animals/wolf.png" },
+                { id: "sound-1", src: "resources/sounds/sound-1.mp3|resources/sounds/sound-1.ogg" }],
 
     loadResources: function (game) {
         this.snake = new Animal("snake",10,10);
@@ -62,6 +63,8 @@
         bmp.onPress = function (evt) {
             // bump the target in front of it's siblings:
             // game.Stage.addChild(bmp);
+            createjs.Sound.play("sound-1", createjs.Sound.INTERRUPT_ANY);
+            game.Update = true;
 
             var offset = { x: bmp.x - evt.stageX, y: bmp.y - evt.stageY };
 

@@ -5,7 +5,8 @@
     Stage: null,
     Queue: new createjs.LoadQueue(false),
     FinishedLoading: false,
-    Update: false
+    Update: false,
+    MessageText: null
 }
 
 $(window).resize(function () {
@@ -22,12 +23,21 @@ $(document).ready(function () {
 
     createjs.Touch.enable(game.Stage);
 
-    game.Stage.enableMouseOver(20);
+    game.Stage.enableMouseOver(40);
     game.Stage.mouseMoveOutside = true;
     game.Stage.autoClear = true;
 
-    game.Queue.loadManifest(resourceManager.manifest);
+    game.MessageText = new createjs.Text("Loading", "20px Arial", "#ff7700");
+    game.MessageText.x = 100;
+    game.MessageText.y = 100;
+    game.MessageText.textBaseline = "alphabetic";
+    game.Stage.addChild(game.MessageText);
+
+    game.Queue.installPlugin(createjs.Sound);
+    game.Queue.addEventListener("progress", updateLoading);
     game.Queue.addEventListener("complete", prepareStage);
+
+    game.Queue.loadManifest(resourceManager.manifest);
 });
 
 function resize(width, height) {
@@ -70,21 +80,13 @@ function startGame() {
 
 function tick(event) {
     if (game.Update == true) {
-        drawStatus();
         game.Stage.update();
         game.Update = false;
     }
 }
 
-function update() {
-    
+function updateLoading(event) {
+    var progress = event ? event.progress + 0.5 | 0 : 0;
+    game.MessageText.text = " " + progress + "%";
+    game.Update = true;
 }
-
-function drawStatus() {
-    var text = new createjs.Text("Hello World", "20px Arial", "#ff7700");
-    text.x = 100;
-    text.y = 100;
-    text.textBaseline = "alphabetic";
-    game.Stage.addChild(text);
-}
-
