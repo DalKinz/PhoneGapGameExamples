@@ -22,6 +22,7 @@ $(document).ready(function () {
     game.Stage = new createjs.Stage($("#gameCanvas")[0]);
 
     createjs.Touch.enable(game.Stage);
+    createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.HTMLAudioPlugin]);
 
     game.Stage.enableMouseOver(40);
     game.Stage.mouseMoveOutside = true;
