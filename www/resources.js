@@ -68,8 +68,8 @@
             // bump the target in front of it's siblings:
             // game.Stage.addChild(bmp);
             createjs.Sound.play("sound-1", createjs.Sound.INTERRUPT_ANY);
+            game.MessageText.text = "playing sound";
             game.Update = true;
-
             var offset = { x: bmp.x - evt.stageX, y: bmp.y - evt.stageY };
 
             // add a handler to the event object's onMouseMove callback
