@@ -24,7 +24,7 @@ $(document).ready(function () {
     createjs.Touch.enable(game.Stage);
     createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.HTMLAudioPlugin]);
 
-    game.Stage.enableMouseOver(40);
+    game.Stage.enableMouseOver(50);
     game.Stage.mouseMoveOutside = true;
     game.Stage.autoClear = true;
 
