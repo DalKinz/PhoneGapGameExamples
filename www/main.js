@@ -14,9 +14,9 @@ $(window).resize(function () {
 });
 
 $(document).ready(function () {
-    $("body").css("background-image", "url(resources/images/backgrounds/country.svg)");
-    $("body").css("background-repeat", "no-repeat");
-    $("body").css("background-size", "cover");
+    $("#gameCanvas").css("background-image", "url(resources/images/backgrounds/house-with-snow.svg)");
+    $("#gameCanvas").css("background-repeat", "no-repeat");
+    $("#gameCanvas").css("background-size", "cover");
 
     game.Context = $("#gameCanvas")[0].getContext("2d");
     game.Stage = new createjs.Stage($("#gameCanvas")[0]);
@@ -28,8 +28,8 @@ $(document).ready(function () {
     game.Stage.autoClear = true;
 
     game.MessageText = new createjs.Text("Loading", "20px Arial", "#ff7700");
-    game.MessageText.x = 100;
-    game.MessageText.y = 100;
+    game.MessageText.x = 5
+    game.MessageText.y = game.Height - 20;
     game.MessageText.textBaseline = "alphabetic";
     game.Stage.addChild(game.MessageText);
 
@@ -44,13 +44,13 @@ function resize(width, height) {
     game.Width = width;
     game.Height = height;
 
-    $("#gameArea").width = width;
-    $("#gameArea").height = height;
+    //$("#gameArea").width = width;
+    //$("#gameArea").height = height;
 
-    $("#gameArea").prop({
-        width: width,
-        height: height
-    });
+    //$("#gameArea").prop({
+    //    width: width,
+    //    height: height
+    //});
 
     $("#gameCanvas")[0].width = width;
     $("#gameCanvas")[0].height = height;

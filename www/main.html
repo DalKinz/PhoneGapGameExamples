@@ -2,25 +2,22 @@
   <head>
       <title>Canvas Game</title>
     <style>
-      #gameArea {
+      /*#gameArea {
         position: absolute;
         left: 0%;
         top: 0%;
         width: 100%;
         height: 100%;
         background-color: transparent;
-      }
-      #gameCanvas {
-        width: 100%;
-        height: 92%;
-      }
-      #statsPanel {
-        position: absolute;
-        width: 100%;
-        height: 8%;
-        bottom: 0;
-        opacity: 0.8;
-      }
+      }*/
+        #gameCanvas {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+        body {
+            margin: 0px;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="resources/js/jquery-2.0.0.min.js"></script>
@@ -31,9 +28,8 @@
     <script src="http://debug.phonegap.com/target/target-script-min.js#bdc2ce86-77f1-11e2-94ce-12313d1744da"></script>
   </head>
   <body>
-    <div id="gameArea">
+    <!--<div id="gameArea">-->
         <canvas id="gameCanvas"></canvas>
-        <div id="statsPanel"></div>
-    </div>
+    <!--</div>-->
   </body>
 </html>
